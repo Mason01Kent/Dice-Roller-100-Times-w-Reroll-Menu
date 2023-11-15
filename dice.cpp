@@ -4,7 +4,7 @@
 
 using namespace std;
 
-void CallDice(); // Function prototype
+void CallDice(); // Function prototype 
 
 class Dice { // Dice class
 public:
