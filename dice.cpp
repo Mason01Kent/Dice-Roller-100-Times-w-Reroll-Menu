@@ -1,58 +1,62 @@
+//Mason Kent
+//COP2000.0M1
+//Random Dice Roller
 #include <iostream>
 #include <random>
 #include <ctime>
+using namespace std;
 
-class Dice {
+void CallDice(); //function prototype
+
+class Dice { //class for dice
 public:
     Dice() {
-        // Seed the random number generator with the current time
-        std::srand(static_cast<unsigned int>(std::time(nullptr)));
+        srand(static_cast<unsigned int>(time(nullptr)));
     }
 
-    int roll() {
-        // Generate a random number between 1 and 6
-        return (std::rand() % 6) + 1;
+    int roll() {//rolls the dice
+        return (rand() % 6) + 1;//returns a random number between 1 and 6
     }
 };
 
-int main() {
-    Dice dice;
+void CallDice() {
+    Dice dice; //calls the dice class
+
     int counts[6] = { 0 }; // Initialize an array to store the counts of each number
 
-    for (int i = 0; i < 100; ++i) {
-        int rollResult = dice.roll();
+    for (int i = 0; i < 100; ++i) { //rolls the dice 100 times
+        int rollResult = dice.roll(); // Roll the dice
         counts[rollResult - 1]++; // Increment the count for the rolled number
     }
 
     for (int i = 0; i < 6; ++i) {//prints out the number of times each number was rolled
         cout << "\t" << (i + 1) << ")" << " was rolled " << counts[i] << " times" << std::endl;
     }
-    cout << endl << "Thank you for using the Dice Roller!" << endl;
-    cout << " ~ Mason Kent ~" << endl;
+
 }
 
-int main() {
-
-    cout << "Project 6" << endl << "Welcome to the Dice Roller!" << endl << endl << "Press 1 to roll the dice! or 2 to quit" << endl;
-
+void Menu() { //menu function
+    cout <<  endl << "Press 1 to roll the dice! or 2 to quit: ";
     int choice;
-    //input validation
-    while (!(cin >> choice) || choice < 1 || choice > 2) {
-        cout << "Invalid input. Please enter a number between 1 and 5: ";
-        cin.clear();
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
-    }
-
-    //switch to determine input and what inputs to ask and outputs to provide
-    switch (choice) {
-    case 1:
+    cin >> choice;
+    switch (choice) { //switch statement for menu
+    case 1: //calls the dice and menu function
         CallDice();
+        Menu();
         break;
+    case 2: //exits the program
+        cout << endl << "Thank you for using the Dice Roller!" << endl << endl;
+        cout << "\t ~ Mason Kent ~" << endl << endl;
+		break;
+    }
+}
 
-    case 2:
-        break;
-    }
-    }
+int main() { //main function
+    cout << "Project 6" << endl << "Welcome to the Dice Roller!" << endl;   
+    Menu();
+
+   
+    cout << "Press enter to exit..." << endl;
 
     return 0;
 }
