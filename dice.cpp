@@ -19,6 +19,21 @@ public:
     }
 };
 
+void Menu() { //menu function
+    cout << endl << "Press 1 to roll the dice! or 2 to quit: ";
+    int choice;
+    cin >> choice;
+    switch (choice) { //switch statement for menu
+    case 1: //calls the dice and menu function
+        CallDice();
+        Menu();
+        break;
+    case 2: //exits the program
+        cout << endl << "Thank you for using the Dice Roller!" << endl << endl;
+        cout << "\t ~ Mason Kent ~" << endl << endl;
+        break;
+    }
+
 void CallDice() {
     Dice dice; //calls the dice class
 
@@ -35,20 +50,7 @@ void CallDice() {
 
 }
 
-void Menu() { //menu function
-    cout <<  endl << "Press 1 to roll the dice! or 2 to quit: ";
-    int choice;
-    cin >> choice;
-    switch (choice) { //switch statement for menu
-    case 1: //calls the dice and menu function
-        CallDice();
-        Menu();
-        break;
-    case 2: //exits the program
-        cout << endl << "Thank you for using the Dice Roller!" << endl << endl;
-        cout << "\t ~ Mason Kent ~" << endl << endl;
-		break;
-    }
+
 }
 
 int main() { //main function
